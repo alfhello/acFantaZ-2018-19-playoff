@@ -17,13 +17,13 @@
 .ascPlayOff {
     background:url(../img/ascPlayOff.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
-    left:40%;
-    top:30%;
-    height:50px;                   /* text area height */
-    width:350px;                   /* text area width */
+/*    left:40%; */
+    top:20%;
+    height:350px;                   /* text area height */
+    width:100%;                   /* text area width */
     text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+/*    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+/*    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
 
@@ -109,16 +109,26 @@ h1 {
 .ascResult.ascConnect {
     background-color:#4B946A;
     padding:4px 10px;
+	border-style:outset;
 }
 
 .ascResult.ascRegLogin {
 	background-color:#C66;	
     padding:4px 10px;
+	border-style:outset;	
+}
+
+.ascResult.ascContactMe {
+	background-color:#06F;
+    padding:4px 10px;	
+	margin-top:5px;	
+	border-style:outset;	
 }
 
 .ascResult.ascButton {
 	background-color:#C66;	
     padding:4px 10px;
+	border-style:outset;	
 }
 
 .ascResult.ascCancel {
@@ -126,6 +136,7 @@ h1 {
     padding:4px 30px;
 	color:#F00;
 	font-weight:bolder;
+	border-style:outset;	
 }
 
 .ascResult.ascTempSupp {
@@ -329,6 +340,19 @@ h1 {
 .hiddenBtn.Active {
 	display:block;	
 }
+.tmRosterWL {
+	display:none;
+}
+.tmRosterWL.Active {
+	display:block;	
+}
+.tmRosterWLCan {
+	display:none;
+}
+.tmRosterWLCan.Active {
+	display:block;	
+    font-size: x-small;	
+}
 .preloader {
 	display:none;	
 }
@@ -387,6 +411,10 @@ a.swipeout-content.sellRoster {
 .TopTeamName.Active {
 	display:block;
 	margin-left: 4px;
+	width:100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;	
 }
 .badge.headdsp {
 	font-family:"MS Serif", "New York", serif;
@@ -495,7 +523,7 @@ a.tab-link.TCRm {
 }
 .PlyLst {
 	height: 30px;
-    margin-top: 20px;
+    margin-top: 0px;
     padding-top: 10px;
     border-style: outset;
     border-color: darkcyan;
@@ -553,6 +581,7 @@ a.tab-link.TCRm {
 .BtnPlayerB {
 	background: conic-gradient( #0CF, #0CF, #9C3, #9C3, #C9F, #C9F);	
 }
+/*
 .tmRosterWL {
 	display:none;	
 }
@@ -560,6 +589,7 @@ a.tab-link.TCRm {
 	display:none;
 	font-size:small;	
 }
+*/
 .swipeout-actions-right a.PutWLActive {
     display: block;
     padding-top: 10px;
@@ -602,4 +632,101 @@ a.tab-link.TCRm {
 }
 .pByTeam:active, .pByPos:active, .pByCost:active {
 	color:#3CF;	
+}
+.ascSearchBar {
+	background-color: transparent;
+}
+.ascPlayerHistTitle {
+	float:left;
+	font-size:x-large;
+	font-weight:bolder;
+	padding-left:7px;
+	padding-top:10px;
+	line-height:22px;
+}
+.ascPlayerHistACP {
+	float: right;
+    padding-right: 5px;
+    padding-top: 10px;
+    font-size: small;
+    font-weight: bold;
+    text-align: right;	
+}
+.UTL-aic-accordion {
+	margin-left:10px;	
+}
+.UTL-aic-wholeLn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.UTL-aic-PosIcon {
+    margin: 3px;
+}
+.UTL-aic-item-title-row {
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-left: 5px;
+    padding-right: 3px;	
+}
+.UTL-aic-wholeLn:nth-child(odd) {
+	background-color:#e5f7f18c;
+}
+.UTL-aic-wholeLn:nth-child(even) {
+	background-color:#ffebe18c;
+}
+
+.UTL-aic-item-titles {
+}
+.UTL-aic-item-title {
+    font-kerning: auto;
+    font-weight: bold;
+    font-size: larger;
+}
+.UTL-aic-item-subtitle {
+}
+.UTL-aic-item-after {
+}
+.StageHeader {
+	max-height: 40px;
+    height: 4%;
+    width: 100%;
+    background: url(../img/2018-19-PlayOffa.png) repeat-x center;
+    background-size: contain;
+    position: absolute;
+    top: 40px;
+    left: -2px;
+}
+.StageFooter {
+	max-height: 40px;
+    height: 4%;
+    width: 100%;
+    background: url(../img/2018-19-PlayOffa.png) repeat-x center;
+    background-size: contain;
+    position: absolute;
+    bottom: 20px;
+    left: -2px;
+}
+.divTeamNameGroup {
+	width:80%;
+	text-align:center;
+}
+.TradeRejected {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 10px;
+    color: red;	
+	display: none;
+}
+.TradeRejected.Active {
+	display: block;	
 }

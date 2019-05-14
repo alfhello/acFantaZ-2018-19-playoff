@@ -43,11 +43,13 @@
     
 	<div class="page-content" style="margin-top:142px; padding-top:1px;">
 		<div id="liJSON" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
+	        <div class="list accordion-list">
 			<ul>
                            
 				{{#each UTROSTER}}     
-				<li class="swipeout" id="TR_{{ascfanta_pid}}">
-					<div class="item-content swipeout-content" style="padding-left:2px;">
+				<li class="swipeout accordion-item" id="TR_{{ascfanta_pid}}">
+                <a href="#" class="item-content item-link" style="padding-left:2px;">
+					<div class="item-content swipeout-content" style="padding-left:2px;width:100%;">
 						<div class="item-media TPOS POS_{{utr_pos}}" style="padding:3px"><p class="POSFlag" id="{{utr_posv}}">{{utr_pos}}</p></div>
 						<div id="ChgPosG" class="item-media CPOS AvailTo" style="padding:3px"><p>G</p></div>
 						<div id="ChgPosF" class="item-media CPOS AvailTo" style="padding:3px"><p>F</p></div>
@@ -62,16 +64,29 @@
 								<div class="item-text">Cost:{{ascfanta_gnowvalue}}m Chg:{{ascfanta_gchgvalue}}m</div>
 							</div>
 						</div>
+				</a>
+
+              <div class="accordion-item-content">
+                <div class="block">
+                  <p style="margin:0px;padding-left:20px;border-top:thin dashed #999;background-color:aliceblue;padding-top:3px;padding-bottom:3px;">
+                  Gm Date:{{../../UTINFO.0.lastgmdate}} Min Played:{{ascfanta_min}} Efficiency:{{ascfanta_plusminus}}<br />
+                  <span style="color:blue;">Pts:{{ascfanta_points}}({{ascfanta_points*1}}) Ast:{{ascfanta_assists}}({{ascfanta_assists*2}}) Reb:{{ascfanta_totreb}}({{ascfanta_totreb*(1.5)}}) Stl:{{ascfanta_steals}}({{ascfanta_steals*(2.5)}}) Blk:{{ascfanta_blocks}}({{ascfanta_blocks*(2.5)}}) TD:({{ascfanta_bonusvalue*1}})</span>
+                  <br />
+                  <span style="color:red;">FGS:{{ascfanta_fgs}}({{ascfanta_fgs*(-0.5)}}) FTS:{{ascfanta_fts}}({{ascfanta_fts*(-1)}}) Turn over:{{ascfanta_turnovers}}({{ascfanta_turnovers*(-1)}})</span></p>
+                </div>
+              </div>                   
+                
 					<div class="sortable-handler"></div>
 					<div class="swipeout-actions-left">
 					{{#each ascfanta_gpos}} 
 						<a id="{{../ascfanta_pid}}_ChgPos{{this}}" class="APOS p{{this}}">{{this}}</a>
 					{{/each}}
 					</div>
-					<div class="swipeout-actions-right">{{#js_if "this.ascfanta_pid < 8"}}<a class="swipeout-content buyRoster buyRoster{{utr_pos}}">Buy</a>{{else}}<a href="#">More</a><a class="swipeout-content sellRoster tradeRoster{{utr_pos}}">Trade</a>{{/js_if}}</div>                      
+					<div class="swipeout-actions-right">{{#js_if "this.ascfanta_pid < 8"}}<a class="swipeout-content buyRoster buyRoster{{utr_pos}}">Buy</a>{{else}}<a class="plyHist" id="{{ascfanta_pid}}">Stat</a><a class="swipeout-content sellRoster tradeRoster{{utr_pos}}">Trade</a>{{/js_if}}</div>                      
 				</li>     
 				{{/each}}    
 			</ul>
+            </div>
 		</div>
 
 <!---            

@@ -17,19 +17,13 @@
         <i class="icon f7-icons">persons</i>
         <span class="tabbar-label ACP-title">By Cost</span>
       </a>   
-
-<!---
-      <a id="openPlayerB" class="tab-link BtnPlayer {{#js_if "this.ACTIVE === 'B'"}}Stat-active{{/js_if}}">
-        <span class="tabbar-label tHeader">All</span>
-        <i class="icon f7-icons">persons_round</i>
-        <span class="tabbar-label ACP-title">All</span>
-      </a>
---->      
+<!--- 
       <a id="openTrWL" class="tab-link BtnPlayer {{#js_if "this.ACTIVE === 'W'"}}Stat-active{{/js_if}}">
         <span class="tabbar-label tHeader">Trade Roster</span>
         <i class="icon f7-icons">reload_round</i>
         <span class="tabbar-label ACP-title">{{this.TODAYINFO.0.txclose.slice(5,-5)}} HKT</span>
       </a>    
+--->      
       <a id="doCostChg" class="tab-link TCRm">
         <span class="tabbar-label tHeader">Cost Remain</span>
         <i class="icon f7-icons">money_dollar_round</i>
@@ -43,6 +37,14 @@
     </div>
 </div>        
 
+    <form class="searchbar searchbar-init ascSearchBar" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found" style="top:142px;">
+        <div class="searchbar-input">
+            <input type="search" placeholder="Search">
+            <a href="#" class="searchbar-clear"></a>
+        </div>
+        <a href="#" class="searchbar-cancel">Cancel</a>
+    </form>   
+
 <!---
 <div style="background-color:#f1f1f7;position:fixed;top:95px;width:100%;"><div style="float:left;padding-top:3px;padding-left:3px;display:inline;"></div><div style="float:right;padding-top:3px; padding-right:0px;display:inline;" id="txDate" name="tx-{{TXDATE}}">Value Date: {{TXDATE}}</div></div>
 --->
@@ -51,8 +53,8 @@
 
 	{{#js_if "this.ACTIVE === 'T' || this.ACTIVE === 'P' || this.ACTIVE === 'S'"}}
    	{{#js_if "this.ACTIVE === 'T'"}}
-    <div class="CurrTmRoster" style="position:fixed;top:122px;width:100%;">Team</div>  
-	<div id="tr_UTbyTeam" class="page-content tr_section Active" style="margin-top:185px;padding-top:1px;">         
+    <div class="CurrTmRoster" style="position:fixed;top:162px;width:100%;">Team</div>  
+	<div id="tr_UTbyTeam" class="page-content tr_section Active" style="margin-top:225px;padding-top:1px;">         
 	      
         
 		<div id="Trade_UTRoster" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
@@ -69,12 +71,12 @@
                     </a>
 				</li>    
 				{{/each}}  
-                <li style="line-height:200px;">.</li> 
+                <li style="line-height:250px;">.</li> 
 		</div>
     {{/js_if}}
    	{{#js_if "this.ACTIVE === 'P'"}}
-    <div class="CurrTmRoster" style="position:fixed;top:122px;width:100%;">Position</div>  
-	<div id="tr_UTbyPos" class="page-content tr_section Active" style="margin-top:185px;padding-top:1px;">         
+    <div class="CurrTmRoster" style="position:fixed;top:162px;width:100%;">Position</div>  
+	<div id="tr_UTbyPos" class="page-content tr_section Active" style="margin-top:225px;padding-top:1px;">         
 	      
         
 		<div id="Trade_UTRoster" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
@@ -95,8 +97,8 @@
 		</div>
     {{/js_if}}
    	{{#js_if "this.ACTIVE === 'S'"}}
-    <div class="CurrTmRoster" style="position:fixed;top:122px;width:100%;">Player Cost Range</div>  
-	<div id="tr_UTbyPos" class="page-content tr_section Active" style="margin-top:185px;padding-top:1px;">         
+    <div class="CurrTmRoster" style="position:fixed;top:162px;width:100%;">Player Cost Range</div>  
+	<div id="tr_UTbyPos" class="page-content tr_section Active" style="margin-top:225px;padding-top:1px;">         
 	      
         
 		<div id="Trade_UTRoster" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
@@ -117,8 +119,8 @@
 		</div>
     {{/js_if}}    
     {{else}}
-	<div id="tr_UTRosterList" class="page-content tr_section" style="margin-top:125px;padding-top:1px;">      
-        <div class="CurrTmRoster">Team Roster</div>
+	<div id="tr_UTRosterList" class="page-content tr_section" style="margin-top:185px;padding-top:1px;">      
+        <div class="CurrTmRoster" style="margin-top:0px;">Team Roster</div>
 		<div id="Trade_UTRoster" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
 				{{#each UTROSTER}}     
 				<li class="swipeout UTTrLi" id="TR_{{ascfanta_pid}}" name="{{utr_posv}}log" style="clear:both;">
@@ -140,11 +142,20 @@
 				{{/each}}   
 		</div>
 
+<!---
 		<div class="CmdBar_woReplace">
         	<div style="display:inline;float:left;"><a id=""></a></div>
+
             <div style="display:inline;float:right;"><a id="sellPlayerWReplace">Make Trade</a></div>
+
         </div>
-		<div class="RdyTrSepr"><a id="clearWatchList" style="float:left;font-size:x-small;">Clear<br />Watch List</a>Watch List</div>
+--->
+<!---
+		<div style="text-align:center;margin-top: 20px;padding-bottom:5px;">Empty Watch List</div>
+--->
+
+		<div class="TradeRejected">Rejected</div>
+		<div class="RdyTrSepr">Watch List</div>
 
 		<div id="liJSON" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
             {{#each WLINFO}}     
@@ -168,15 +179,14 @@
             <div class="swipeout-actions-right"><a class="BuyActive" id="sBuy_{{ascfanta_pid}}">Buy</a><a class="BuyCancel" id="sCan_{{ascfanta_pid}}">Cancel</a><a class="RemoveWL" id="rm_{{ascfanta_pid}}">Remove WatchList</a></div>
             </li>    
             {{/each}}
-            <li style="line-height:150px;">.</li> 
+            <li style="line-height:250px;">.</li> 
 		</div>
 	</div>
 
-	<div id="tr_PlayerList" class="page-content tr_section Active" style="margin-top:125px; padding-top:1px;">   
-<!---	replace by tmRosterWL in index.html --    
-		<div class=""><a id="moveToUTRWL">Team Roster & Watch List</a></div> --->
+	<div id="tr_PlayerList" class="page-content tr_section Active" style="margin-top:185px; padding-top:1px;">   
+        
     	<div class="PlyLst">{{PARAM}} Player List</div>
-		<div id="tr_PList" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;clear:both;">
+		<div id="tr_PList" class="list-block-search list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;clear:both;">
 			<ul>
 	            {{#each PLST}}
                 <li class="swipeout" id="buysp_{{ascfanta_gfullname}}_{{ascfanta_pid}}_{{ascfanta_gpos}}_{{mdate}}_{{ascfanta_gnowvalue.toFixed(1)}}_{{ascfanta_newval_key}}" name="p_{{ascfanta_pid}}" style="clear:both;">
@@ -195,12 +205,12 @@
 				</li>                    
                 {{/each}}
                 
-                <li style="line-height:150px;">.</li>
+                <li style="line-height:250px;">.</li>
 			</ul>
 		</div>
         <div>
         	<ul>
-            <li>Loading...</li>
+            <li>.</li>
 			</ul>  
 		</div>    
         <div class="preloader"></div>

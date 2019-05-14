@@ -1,0 +1,213 @@
+<div data-page="pageStatRec" class="page navbar-through toolbar-through" title="StatRec">
+
+{{#js_if "this.TYPE === 'UTTeam'"}}
+
+    <form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+        <div class="searchbar-input">
+            <input type="search" placeholder="Search">
+            <a href="#" class="searchbar-clear"></a>
+        </div>
+        <a href="#" class="searchbar-cancel">Cancel</a>
+    </form>
+    
+    <div class="searchbar-overlay"></div>
+    
+    <div class="page-content">
+        <div class="content-block searchbar-not-found">
+                Nothing found
+        </div>
+ 
+        <div class="list-block list-block-search searchbar-found" style="margin-top:0px;">
+        <div style="width:100%; display:inline-block;">
+            <div class="ascPlayerHistTitle">{{this.HDATA[0].ascfanta_teamname}}<br /><span style="font-size:small;">{{this.HDATA[0].ascfanta_group}}</span></div>
+			<div class="ascPlayerHistACP"><span style="font-size:18px;">Total ACP: {{this.HDATA[0].lasttacp.toFixed(1)}}</span><br />Trade Token:{{this.HDATA[0].tokenavailable}}&nbsp;&nbsp;&nbsp;Bank:{{this.HDATA[0].ascfanta_gvalueremain.toFixed(1)}}&nbsp;&nbsp;&nbsp;COST:{{this.HDATA[0].teamvalue.toFixed(1)}}</div>
+        </div>
+        <div class="list accordion-list">
+            <ul>
+            {{#each UTDATA}}
+            <li class="accordion-item"><a href="#" class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title" style="width:100%;">
+                    <div style="float:left;padding-left:5px;">{{ascfanta_logdate}}</div>
+                    <div style="float:right;margin-right:5px;">{{ascfanta_todaytacp.toFixed(1)}}</div>                    
+                  </div>
+                </div></a>
+              <div class="accordion-item-content">
+
+            <div class="item-inner" style="padding-left:6px;border-top:thin dashed #999;background-color:aliceblue">
+				<div class="item-media TPOS POS_G" style="padding:3px"><p class="POSFlag" id="G">G</p></div>                          
+                <div class="item-title-row" style="width:100%; padding-left:5px;">
+                    <div class="item-title" style="padding-top:5px;font-weight:bolder;font-size:18px;">{{pname_g1}} - {{pteam_g1}}</div>
+                    <div class="item-subtitle" style="margin-top:0px;">Cost:{{ascfanta_pval_g1}}m</div>
+				</div>
+                <div class="item-after" style="margin-top:-8px;">+{{ascfanta_g1_acp}}p</div>
+            </div>
+            
+            <div class="item-inner" style="padding:6px;background-color:cornsilk;">
+	            <div class="item-media TPOS POS_G" style="padding:3px"><p class="POSFlag" id="G">G</p></div> 
+                <div class="item-title-row" style="width:100%; padding-left:5px;">
+                    <div class="item-title" style="padding-top:5px;font-weight:bolder;font-size:18px;">{{pname_g2}} - {{pteam_g2}}</div>
+                    <div class="item-subtitle" style="margin-top:0px;">Cost:{{ascfanta_pval_g2}}m</div>
+				</div>
+                <div class="item-after" style="margin-top:-8px;">+{{ascfanta_g2_acp}}p</div>
+            </div>
+            
+            <div class="item-inner" style="padding:6px;background-color:aliceblue;">
+	            <div class="item-media TPOS POS_F" style="padding:3px"><p class="POSFlag" id="F">F</p></div> 
+                <div class="item-title-row" style="width:100%; padding-left:5px;">
+                    <div class="item-title" style="padding-top:5px;font-weight:bolder;font-size:18px;">{{pname_f1}} - {{pteam_f1}}</div>
+                    <div class="item-subtitle" style="margin-top:0px;">Cost:{{ascfanta_pval_f1}}m</div>
+				</div>
+                <div class="item-after" style="margin-top:-8px;">+{{ascfanta_f1_acp}}p</div>
+            </div>
+            
+            <div class="item-inner" style="padding:6px;background-color:cornsilk;">
+	            <div class="item-media TPOS POS_F" style="padding:3px"><p class="POSFlag" id="F">F</p></div> 
+                <div class="item-title-row" style="width:100%; padding-left:5px;">
+                    <div class="item-title" style="padding-top:5px;font-weight:bolder;font-size:18px;">{{pname_f2}} - {{pteam_f2}}</div>
+                    <div class="item-subtitle" style="margin-top:0px;">Cost:{{ascfanta_pval_f2}}m</div>
+				</div>
+                <div class="item-after" style="margin-top:-8px;">+{{ascfanta_f2_acp}}p</div>
+            </div>
+            
+            <div class="item-inner" style="padding:6px;background-color:aliceblue;">
+				<div class="item-media TPOS POS_C" style="padding:3px"><p class="POSFlag" id="C">C</p></div>             
+                <div class="item-title-row" style="width:100%; padding-left:5px;">
+                    <div class="item-title" style="padding-top:5px;font-weight:bolder;font-size:18px;">{{pname_c1}} - {{pteam_c1}}</div>
+                    <div class="item-subtitle" style="margin-top:0px;">Cost:{{ascfanta_pval_c1}}m</div>
+				</div>
+                <div class="item-after" style="margin-top:-8px;">+{{ascfanta_c1_acp}}p</div>
+            </div>
+            
+            <div class="item-inner" style="padding:6px;background-color:cornsilk;">
+	            <div class="item-media TPOS POS_B" style="padding:3px"><p class="POSFlag" id="B">B</p></div> 
+                <div class="item-title-row" style="width:100%; padding-left:5px;">
+                    <div class="item-title" style="padding-top:5px;font-weight:bolder;font-size:18px;">{{pname_b1}} - {{pteam_b1}}</div>
+                    <div class="item-subtitle" style="margin-top:0px;">Cost:{{ascfanta_pval_b1}}m</div>
+				</div>
+                <div class="item-after" style="margin-top:-8px;">+{{ascfanta_b1_acp}}p</div>
+            </div>
+
+<!---              
+                <div class="block">
+                  <p style="margin:0px;padding-left:20px;border-top:thin dashed #999;background-color:aliceblue;padding-top:3px;padding-bottom:3px;">
+                  <span style="color:blue;">
+                  G:{{pname_g1}} ({{ascfanta_g1_acp}}) <br />
+                  G:{{pname_g2}} ({{ascfanta_g2_acp}}) <br /> 
+                  F:{{pname_f1}} ({{ascfanta_f1_acp}}) <br /> 
+                  F:{{pname_f2}} ({{ascfanta_f2_acp}}) <br /> 
+                  C:{{pname_c1}} ({{ascfanta_c1_acp}}) <br /> 
+                  B:{{pname_b1}} ({{ascfanta_b1_acp}}) 
+                  </span>
+                  </p>
+                </div>
+--->                
+              </div>
+            </li>                   
+            {{/each}}
+            </ul>
+            </div>
+        </div>
+	</div>        
+    
+{{/js_if}}
+      
+{{#js_if "this.TYPE === 'Player'"}}
+
+    <form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+        <div class="searchbar-input">
+            <input type="search" placeholder="Search">
+            <a href="#" class="searchbar-clear"></a>
+        </div>
+        <a href="#" class="searchbar-cancel">Cancel</a>
+    </form>
+    
+    <div class="searchbar-overlay"></div>
+    
+    <div class="page-content">
+        <div class="content-block searchbar-not-found">
+                Nothing found
+        </div>
+ 
+        <div class="list-block list-block-search searchbar-found" style="margin-top:0px;">
+        <div style="width:100%; display:inline-block;">
+            <div class="ascPlayerHistTitle">{{this.HDATA[0].ascfanta_gfullname}} - {{this.HDATA[0].ascfanta_pteam}}<br /><span style="font-size:small;">COST:{{this.HDATA[0].ascfanta_pvalue_final.toFixed(2)}}</span></div>
+			<div class="ascPlayerHistACP">Total ACP: {{this.HDATA[0].ascfanta_tacp.toFixed(1)}}<br />Avg. ACP: {{this.HDATA[0].ascfanta_aacp.toFixed(2)}}</div>
+        </div>
+        <div class="list accordion-list">
+            <ul>
+            {{#each PDATA}}
+            <li class="accordion-item"><a href="#" class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title" style="width:100%;">
+                    <div style="float:left;padding-left:5px;">{{gmdate}}</div>
+                    <div style="float:right;margin-right:5px;">{{ascfanta_tacp.toFixed(1)}}</div>
+                    <div class="TDdisplay bonusFlash" style="padding-right:7px;">{{#js_if "this.ascfanta_bonus === 'TD'"}}<span>Triple-Double</span>{{/js_if}}</div>
+                  </div>
+                </div></a>
+              <div class="accordion-item-content">
+                <div class="block">
+                  <p style="margin:0px;padding-left:20px;border-top:thin dashed #999;background-color:aliceblue;padding-top:3px;padding-bottom:3px;">
+                  <span style="color:blue;">Pts:{{ascfanta_points}}({{ascfanta_points}}) Ast:{{ascfanta_assists}}({{ascfanta_assists*2}}) Reb:{{ascfanta_totreb}}({{ascfanta_totreb*(1.5)}}) Stl:{{ascfanta_steals}}({{ascfanta_steals*(2.5)}}) Blk:{{ascfanta_blocks}}({{ascfanta_blocks*(2.5)}}) TD:({{ascfanta_bonusvalue}})</span>
+                  <br />
+                  <span style="color:red;">FGS:{{ascfanta_fgs}}({{ascfanta_fgs*(-0.5)}}) FTS:{{ascfanta_fts}}({{ascfanta_fts*(-1)}}) Turn over:{{ascfanta_turnovers}}({{ascfanta_turnovers*(-1)}})</span><br />
+                  Min Played:{{ascfanta_min}} Efficiency:{{ascfanta_plusminus}}</p>
+                </div>
+              </div>
+            </li>                   
+            {{/each}}
+            </ul>
+            </div>
+        </div>
+	</div>        
+    
+{{/js_if}}
+
+{{#js_if "this.TYPE === 'ACPRank'"}}
+    <form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+        <div class="searchbar-input">
+            <input type="search" placeholder="Search">
+            <a href="#" class="searchbar-clear"></a>
+        </div>
+        <a href="#" class="searchbar-cancel">Cancel</a>
+    </form>
+    
+    <div class="searchbar-overlay"></div>
+    
+    <div class="page-content">
+        <div class="content-block searchbar-not-found">
+                Nothing found
+        </div>
+ 
+        <div class="list-block list-block-search searchbar-found" style="margin-top:0px;">
+            <ul>
+            	{{#each DATA}}
+                <li class="swipeout" name="p_{{ascfanta_pid}}" style="clear:both;">
+					<div class="item-content swipeout-content" style="padding-left:2px;">
+						<div class="item-media TACPRank POS_{{ascfanta_gpos}}" style="padding:3px;width:40px;height:50px;text-align:center"><span style="width:100%;font-weight:bold;">{{gposn}}</span></div>
+                        <div class="item-inner" style="padding:3px;margin-left:3px;">
+                            <div class="item-title-row">
+                                    <div class="item-title" style="padding-left:5px;padding-top:4px;font-weight:bolder;">{{ascfanta_gfullname}}</div>
+                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;font-size:small;">COST:{{ascfanta_pvalue_final.toFixed(1)}}</div>
+                                    </div>
+                            <div class="item-subtitle" style="font-size:smaller;padding-left:5px;">Total ACP:{{ascfanta_tacp.toFixed(1)}}<br>Avg. ACP:{{ascfanta_aacp.toFixed(2)}}</div>
+                        </div>
+					</div>
+                    <div class="sortable-handler"></div>
+                    <div class="swipeout-actions-right"><a class="plyHist" id="{{ascfanta_pid}}">Stat</a><a class="PutWLActive" id="p_{{ascfanta_pid}}">add<br />Watch List</a></div>                      
+				</li>                   
+                
+<!---                
+                <li class="item-content">
+                    <div class="item-inner">
+                    <div class="item-title">{{ascfanta_gfullname}} {{ascfanta_tacp}} {{ascfanta_pvalue_final}}</div>
+                    </div>
+                </li> 
+--->                
+                {{/each}}           
+            </ul>
+        </div>
+    </div>
+{{/js_if}}
+
+</div>

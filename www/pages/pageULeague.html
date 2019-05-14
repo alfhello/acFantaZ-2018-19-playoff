@@ -3,16 +3,16 @@
 <div class="toolbar tabbar tabbar-labels" style="position:fixed;top:43px;height:78px;">
     <div class="toolbar-inner" style="padding-top:4px;">
 	  <a id="doUTPrvLRank" class="tab-link {{#js_if "this.INTYPE === 'prvL'"}}Stat-active{{/js_if}}">
-        <span class="tabbar-label tHeader">Privacy League<br />Overall{{this.UTDATA[0].ascfanta_nowrank}}</span>
+        <span class="tabbar-label tHeader">Private League<br />Overall</span>
         <i class="icon f7-icons">business
         <span class="badge color-red headdsp">{{this.UTDATA[0].ascfanta_nowutrank}}</span>
         </i>
-        <span class="tabbar-label tDataS">{{this.UTDATA[0].ascfanta_group}}</span>
+        <span class="tabbar-label tDataS">{{this.UTDATA[0].ascfanta_tacp}}p</span>
       </a>  
       <a id="doUTPrvLRanklgd" class="tab-link {{#js_if "this.INTYPE === 'prvLlgd'"}}Stat-active{{/js_if}}">
         <span class="tabbar-label tHeader">Private League<br />Last Result</span>
         <i class="icon f7-icons ios-only">document_chart</i>
-        <span class="tabbar-label tDataS">ACP: {{UTDATA[0].ascfanta_todaytacp}}</span>
+        <span class="tabbar-label tDataS">{{UTDATA[0].ascfanta_todaytacp}}p</span>
       </a>
       <a id="doUTWorldLRank" class="tab-link {{#js_if "this.INTYPE === 'wwL'"}}Stat-active{{/js_if}}">
         <span class="tabbar-label tHeader">World Rank<br />Overall</span>
@@ -39,11 +39,16 @@
 
 	<div class="page-content" style="margin-top:142px;padding-top:1px;">            
 		<div id="liJSON" class="list-block media-list sortable" style="margin-top:2px;margin-bottom:2px;">
+        <div class="list accordion-list">
 			<ul>
 				{{#js_if "this.INTYPE === 'prvL'"}}
+<!---                
+                <li style="line-height:40px;padding-left: 5px;font-size: larger;background-color:darkturquoise;">Private League - Overall Ranking ({{GM_DATE}})</li>
+---> 
+                <li style="line-height:25px;padding-left:5px;font-size:larger;background-color:#00ced152;padding-top:5px;padding-bottom:5px;"><span style="font-size:small;">League </span><span style="color:red;font-weight:bold;padding-left:3px;">{{UTDATA.0.ascfanta_group}}</span><br /><span style="font-size:large;font-weight:bold;">Overall Ranking </span><span style="color:red;font-size:large;font-weight:bold;padding-left:3px;">{{GMDATE}}</span></li>
                	{{#each DATA}}
-				<li class="swipeout" id="TR_{{ascfanta_teamid}}" style="clear:both;">
-					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;">
+				<li class="swipeout accordion-item" id="TR_{{ascfanta_teamid}}" style="clear:both;"><a href="#" class="item-content item-link" style="padding-left:0px;">
+					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;width:100%;">
 						<div class="item-media TUTLRank RK{{ascfanta_nowutrank}}" style="padding:3px;width:40px;height:50px;text-align:center;"><span style="width:100%;font-weight:bold;">{{ascfanta_nowutrank}}</span></div>
 							<div class="item-inner" style="padding:3px">
 								<div class="item-title-row">
@@ -51,79 +56,371 @@
 <!---
 									<div class="item-after" style="padding-top:5px;max-height:22px;">{{ascfanta_tacp.toFixed(1)}}<br />${{ascfanta_teamvalue}}m</div>
 --->
-                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Total ACP:<br>Last ACP:</div><div style="font-size:medium;float:right;">{{ascfanta_tacp.toFixed(1)}}<br>{{ascfanta_todaytacp.toFixed(1)}}</div></div>
+                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Total ACP:<br>Last ACP:</div><div style="font-size:medium;float:right;">{{ascfanta_tacp.toFixed(1)}}p<br>{{ascfanta_todaytacp.toFixed(1)}}p</div></div>
 
 								</div>
-								<div class="item-subtitle" style="font-size:small;">last rank:{{ascfanta_lastutrank}} &nbsp;&nbsp;&nbsp;&nbsp;  trade used:</div>
+								<div class="item-subtitle" style="font-size:small;">last rank:{{ascfanta_lastutrank}} &nbsp;&nbsp;&nbsp;&nbsp;</div>
 							</div>
 						</div>
-					<div class="sortable-handler"></div>
-					<div class="swipeout-actions-right"><a href="#">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
+			</a>
+            <div class="accordion-item-content UTL-aic-accordion">
+            <div class="UTL-aic-wholeLn" style="border-top:thin dashed #999;">
+				<div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div>                          
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g1}} - {{pteam_g1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g1}}m</div>
+                    </div>
+					<div class="UTL-aic-item-after">+{{ascfanta_g1_acp}}p</div>
+				</div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g2}} - {{pteam_g2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_g2_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f1}} - {{pteam_f1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f1_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f2}} - {{pteam_f2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f2_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_C"><p class="POSFlag" id="C">C</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_c1}} - {{pteam_c1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_c1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_c1_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_B"><p class="POSFlag" id="B">B</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_b1}} - {{pteam_b1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_b1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_b1_acp}}p</div>
+                 </div>
+            </div>
+			</div>
+
+            <div class="sortable-handler"></div>
+            <div class="swipeout-actions-right"><a class="UTTHist" id="{{ascfanta_teamid}}_{{ascfanta_groupkey}}">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>
 				</li> 
                 {{/each}}
                 {{/js_if}}
 
 				{{#js_if "this.INTYPE === 'wwL'"}}
+<!---                
+                <li style="line-height:40px;padding-left: 5px;font-size: larger;background-color:#94fd45;">Public - Overall Ranking ({{GM_DATE}})</li>
+--->                
+                <li style="line-height:25px;padding-left:5px;font-size:larger;background-color:#94fd45;padding-top:5px;padding-bottom:5px;"><span style="font-size:small;">Public League </span><span style="color:red;font-weight:bold;padding-left:3px;"></span><br /><span style="font-size:large;font-weight:bold;">Overall Ranking </span><span style="color:red;font-size:large;font-weight:bold;padding-left:3px;">{{GMDATE}}</span></li>
                	{{#each DATA}}
-				<li class="swipeout" id="TR_{{ascfanta_teamid}}" style="clear:both;">
-					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;">
+				<li class="swipeout accordion-item" id="TR_{{ascfanta_teamid}}" style="clear:both;">
+                <a href="#" class="item-content item-link" style="padding-left:0px;">
+					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;width:100%;">
 						<div class="item-media TUTLRank RK{{ascfanta_nowrank}}" style="padding:3px;width:40px;height:50px;text-align:center"><span style="width:100%;font-weight:bold;">{{ascfanta_nowrank}}</span></div>
                         <div class="item-inner" style="padding:3px;margin-left:3px;">
                             <div class="wLGrp">{{ascfanta_group}}</div>
                             <div class="item-title-row">
                                     <div class="item-title" style="padding-left:5px;padding-top:4px;font-weight:bolder;">{{ascfanta_teamname}}</div>
-                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Total ACP:<br>Last ACP:</div><div style="font-size:medium;float:right;">{{ascfanta_tacp.toFixed(1)}}<br>{{ascfanta_todaytacp.toFixed(1)}}</div></div>
+                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Total ACP:<br>Last ACP:</div><div style="font-size:medium;float:right;">{{ascfanta_tacp.toFixed(1)}}p<br>{{ascfanta_todaytacp.toFixed(1)}}p</div></div>
                                     </div>
-                            <div class="item-subtitle" style="font-size:small;padding-left:5px;">last rank:{{ascfanta_lastrank}} &nbsp;&nbsp;&nbsp;&nbsp;  trade used:</div>
+                            <div class="item-subtitle" style="font-size:small;padding-left:5px;">last rank:{{ascfanta_lastrank}} &nbsp;&nbsp;&nbsp;&nbsp;</div>
                         </div>
 					</div>
+                </a>    
+
+            <div class="accordion-item-content UTL-aic-accordion">
+            <div class="UTL-aic-wholeLn" style="border-top:thin dashed #999;">
+				<div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div>                          
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g1}} - {{pteam_g1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g1}}m</div>
+                    </div>
+					<div class="UTL-aic-item-after">+{{ascfanta_g1_acp}}p</div>
+				</div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g2}} - {{pteam_g2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_g2_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f1}} - {{pteam_f1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f1_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f2}} - {{pteam_f2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f2_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_C"><p class="POSFlag" id="C">C</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_c1}} - {{pteam_c1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_c1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_c1_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_B"><p class="POSFlag" id="B">B</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_b1}} - {{pteam_b1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_b1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_b1_acp}}p</div>
+                 </div>
+            </div>
+			</div>
+                    
                     <div class="sortable-handler"></div>
-                    <div class="swipeout-actions-right"><a href="#">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
+                    <div class="swipeout-actions-right"><a class="UTTHist" id="{{ascfanta_teamid}}_{{ascfanta_groupkey}}">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
 				</li>                    
                 {{/each}}
                 {{/js_if}}
 
 				{{#js_if "this.INTYPE === 'prvLlgd'"}}
+                <li style="line-height:25px;padding-left:5px;font-size:larger;background-color:#b0ecec78;padding-top:5px;padding-bottom:5px;"><span style="font-size:small;">League : </span><span style="color:red;font-weight:bold;padding-left:3px;">{{UTDATA.0.ascfanta_group}}</span><br /><span style="font-size:large;font-weight:bold;">Daily Ranking </span><span style="color:red;font-size:large;font-weight:bold;padding-left:3px;">{{GMDATE}}</span></li>
                	{{#each DATA}}
-				<li class="swipeout" id="TR_{{ascfanta_teamid}}" style="clear:both;">
-					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;">
+				<li class="swipeout accordion-item" id="TR_{{ascfanta_teamid}}" style="clear:both;">
+                <a href="#" class="item-content item-link" style="padding-left:0px;">
+					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;width:100%;">
 						<div class="item-media TUTLRank RK{{lgmdrank}}" style="padding:3px;width:40px;height:50px;text-align:center;"><span style="width:100%;font-weight:bold;">{{lgmdrank}}</span></div>
-							<div class="item-inner" style="padding:3px">
-								<div class="item-title-row">
-									<div class="item-title" style="padding-top:3px;font-weight:bolder;max-height:22px;">{{ascfanta_teamname}}</div>
-                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Last ACP:<br>Cost Chg:</div><div style="font-size:medium;float:right;">+{{ascfanta_todaytacp.toFixed(1)}}<br>+0.0M</div></div>
-								</div>
-								<div class="item-subtitle" style="font-size:small;">trade used:0</div>
-							</div>
-						</div>
+                        <div class="item-inner" style="padding:3px">
+                            <div class="item-title-row">
+                                <div class="item-title" style="padding-top:3px;font-weight:bolder;max-height:22px;">{{ascfanta_teamname}}</div>
+                                <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Last ACP:<br>Cost Chg:</div><div style="font-size:medium;float:right;">+{{ascfanta_todaytacp.toFixed(1)}}p<br>+0.0m</div></div>
+                            </div>
+                            <div class="item-subtitle" style="font-size:small;"></div>
+                        </div>
+					</div>
+				</a>
+                    
+            <div class="accordion-item-content UTL-aic-accordion">
+            <div class="UTL-aic-wholeLn" style="border-top:thin dashed #999;">
+				<div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div>                          
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g1}} - {{pteam_g1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g1}}m</div>
+                    </div>
+					<div class="UTL-aic-item-after">+{{ascfanta_g1_acp}}p</div>
+				</div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g2}} - {{pteam_g2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_g2_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f1}} - {{pteam_f1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f1_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f2}} - {{pteam_f2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f2_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_C"><p class="POSFlag" id="C">C</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_c1}} - {{pteam_c1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_c1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_c1_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_B"><p class="POSFlag" id="B">B</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_b1}} - {{pteam_b1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_b1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_b1_acp}}p</div>
+                 </div>
+            </div>
+			</div>
+                    
 					<div class="sortable-handler"></div>
-					<div class="swipeout-actions-right"><a href="#">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
+					<div class="swipeout-actions-right"><a class="UTTHist" id="{{ascfanta_teamid}}_{{ascfanta_groupkey}}">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
 				</li> 
                 {{/each}}
                 {{/js_if}}
                 
                 {{#js_if "this.INTYPE === 'wwLlgd'"}}
+<!---                
+                <li style="line-height:40px;padding-left: 5px;font-size: larger;background-color:#c8ffad;">Public - Daily Ranking ({{GM_DATE}})</li> 
+--->                
+                <li style="line-height:25px;padding-left:5px;font-size:larger;background-color:#c8ffad;padding-top:5px;padding-bottom:5px;"><span style="font-size:small;">Public League </span><span style="color:red;font-weight:bold;padding-left:3px;"></span><br /><span style="font-size:large;font-weight:bold;">Daily Ranking </span><span style="color:red;font-size:large;font-weight:bold;padding-left:3px;">{{GMDATE}}</span></li>                               
                	{{#each DATA}}
-				<li class="swipeout" id="TR_{{ascfanta_teamid}}" style="clear:both;">
-					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;">
+				<li class="swipeout accordion-item" id="TR_{{ascfanta_teamid}}" style="clear:both;">
+                <a href="#" class="item-content item-link" style="padding-left:0px;">
+					<div class="item-content swipeout-content {{teamhl}}" style="padding-left:2px;width:100%;">
 						<div class="item-media TUTLRank RK{{lgmdrank}}" style="padding:3px;width:40px;height:50px;text-align:center"><span style="width:100%;font-weight:bold;">{{lgmdrank}}</span></div>
                         <div class="item-inner" style="padding:3px;margin-left:3px;">
                             <div class="wLGrp">{{ascfanta_group}}</div>
                             <div class="item-title-row">
                                     <div class="item-title" style="padding-left:5px;padding-top:4px;font-weight:bolder;">{{ascfanta_teamname}}</div>
-                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Last ACP:<br>Cost Chg:</div><div style="font-size:medium;float:right;">+{{ascfanta_todaytacp.toFixed(1)}}<br>+0.0M</div></div>
+                                    <div class="item-after" style="max-height:22px;width:110px;display:inline;margin-top:7px;"><div style="font-size:x-small;float:left;margin-top:2px;line-height:18px;">Last ACP:<br>Cost Chg:</div><div style="font-size:medium;float:right;">+{{ascfanta_todaytacp.toFixed(1)}}p<br>+0.0m</div></div>
 								</div>
-                            <div class="item-subtitle" style="font-size:small;padding-left:5px;">last rank: &nbsp;&nbsp;&nbsp;&nbsp;  trade used:</div>
+                            <div class="item-subtitle" style="font-size:small;padding-left:5px;"></div>
                         </div>
 					</div>
+				</a>
+
+            <div class="accordion-item-content UTL-aic-accordion">
+            <div class="UTL-aic-wholeLn" style="border-top:thin dashed #999;">
+				<div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div>                          
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g1}} - {{pteam_g1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g1}}m</div>
+                    </div>
+					<div class="UTL-aic-item-after">+{{ascfanta_g1_acp}}p</div>
+				</div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_G"><p class="POSFlag" id="G">G</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_g2}} - {{pteam_g2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_g2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_g2_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f1}} - {{pteam_f1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f1_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_F"><p class="POSFlag" id="F">F</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_f2}} - {{pteam_f2}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_f2}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_f2_acp}}p</div>
+                 </div>
+            </div>
+            
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_C"><p class="POSFlag" id="C">C</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_c1}} - {{pteam_c1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_c1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_c1_acp}}p</div>
+                 </div>
+            </div>
+
+            <div class="UTL-aic-wholeLn">
+	            <div class="UTL-aic-PosIcon TPOS POS_B"><p class="POSFlag" id="B">B</p></div> 
+                <div class="UTL-aic-item-title-row">
+                    <div class="UTL-aic-item-titles">
+                        <div class="UTL-aic-item-title">{{pname_b1}} - {{pteam_b1}}</div>
+                        <div class="UTL-aic-item-subtitle">Cost:{{ascfanta_pval_b1}}m</div>
+					</div>
+            	    <div class="UTL-aic-item-after">+{{ascfanta_b1_acp}}p</div>
+                 </div>
+            </div>
+			</div>            
+                
                     <div class="sortable-handler"></div>
-                    <div class="swipeout-actions-right"><a href="#">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
+                    <div class="swipeout-actions-right"><a class="UTTHist" id="{{ascfanta_teamid}}_{{ascfanta_groupkey}}">Team<br />History</a><a class="swipeout-delete createLesson">Trade<br /> History</a></div>                      
 				</li>                    
                 {{/each}}
                 {{/js_if}}
                 
 				<li style="line-height:150px;">.</li>           
 			</ul>
+			</div>
 		</div>
         <div>
         	<ul>

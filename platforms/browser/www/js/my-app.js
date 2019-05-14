@@ -117,7 +117,7 @@ myApp.onPageInit('pageRoster', function(page) {
 	displayConsole('pageRoster', 'Loaded');
 	indexPageBtnReset();
 
-	$$(".TopTeamName").html(" "+getLStorage('userTeam'));
+	$$(".TopTeamName").html(" "+getLStorage('userTeam')+" ("+getLStorage('userGroup')+")");
 	$$(".TopTeamName").addClass("Active");	
 	
 	$$(".APOS").on('click', function() {
@@ -189,8 +189,11 @@ myApp.onPageInit('pageRoster', function(page) {
 	});
 	$$(".tradeRosterB").on('click', function() {
 		doPlayerLst('B',0);
+	});
+		
+	$$(".plyHist").on('click', function() {
+		doStatHdr('Player', this.id);
 	});	
-	
 });
 
 myApp.onPageInit('newReg', function(page) {
@@ -329,6 +332,9 @@ function doPlayerNLst(iType, TVal) {
 
 myApp.onPageInit('pagePlayer', function(page) {
 	displayConsole('pagePlayer', 'Loaded');	
+
+	$$(".tmRosterWLCan").addClass('Active');
+	$$(".TradeRejected").removeClass('Active');
 	
 	if (getLStorage('WLDsp') === 'Y') {
 		$$(".tmRosterWL").removeClass('Active');		
@@ -389,6 +395,7 @@ myApp.onPageInit('pagePlayer', function(page) {
 		$$("#tr_UTRosterList").addClass('Active');
 	});
 
+/*
 	$$(".tmRosterWL").on('click', function() {
 		displayConsole('tmRoster WL click');
 //		$$("#tr_PlayerList").removeClass('Active');
@@ -404,12 +411,18 @@ myApp.onPageInit('pagePlayer', function(page) {
 			mainView.router.load({url:'pages/pagePlayer.html', ignoreCache:true, reload:true, context: json});	
 		});
 	});
+*/
 	
 	$$(".SellActive").on('click', function() {
 		displayConsole('SellActive Click: ' + this.id);
 		$$("#sAct_" + this.id.slice(-2)).addClass('Active');
 		$$("#sCan_" + this.id.slice(-2)).addClass('Active');
 		$$(".CmdBar_woReplace").addClass('Active');
+		
+		$$(".tmRosterWL").addClass('Active');
+		$$(".tmRosterWLCan").addClass('Active');	
+		$$(".TradeRejected").removeClass('Active');	
+		
 		$$(".TrCfmBtn").addClass('Active');
 		$$("#" + this.id.slice(-2)).parent().parent().addClass('toSell');
 		$$("li.swipeout").each(function() {
@@ -423,6 +436,9 @@ myApp.onPageInit('pagePlayer', function(page) {
 		displayConsole('SellActive Click: ' + this.id);		
 		$$("#sAct_" + this.id.slice(-2)).removeClass('Active');
 		$$("#sCan_" + this.id.slice(-2)).removeClass('Active');
+		
+		$$(".TradeRejected").removeClass('Active');		
+		
 		$$("#" + this.id.slice(-2)).parent().parent().removeClass('toSell');
 		$$("li.swipeout").each(function() {
 			myApp.swipeoutClose(this, function() {
@@ -457,7 +473,9 @@ myApp.onPageInit('pagePlayer', function(page) {
 		displayConsole('BuyActive Click: ' + this.id);
 		$$("#" + this.id).addClass('Active');
 		$$("#sCan_" + this.id.slice(5)).addClass('Active');
-
+		
+		$$(".TradeRejected").removeClass('Active');
+		
 		$$("#" + this.id).parent().parent().children(".RdyTr").addClass('toBuy');
 		$$("li.swipeout").each(function() {
 			myApp.swipeoutClose(this, function() {
@@ -470,6 +488,8 @@ myApp.onPageInit('pagePlayer', function(page) {
 		displayConsole('BuyCancel Click: ' + this.id);		
 		$$("#" + this.id).removeClass('Active');
 		$$("#sBuy_" + this.id.slice(5)).removeClass('Active');
+		
+		$$(".TradeRejected").removeClass('Active');
 		
 		$$("#" + this.id).parent().parent().children(0).removeClass('toBuy');
 		$$("li.swipeout").each(function() {
@@ -512,10 +532,18 @@ myApp.onPageInit('pagePlayer', function(page) {
 	
 	$$("#clearWatchList").on('click', function() {
 		setLStorage('wl','[]');
-		reopenTmRosterWL();
+		reopenWL();
+		$$(".TradeRejected").removeClass('Active');		
 	});
 	
-	$$("#sellPlayerWReplace").on('click', function() {
+	$$(".tmRosterWLCan").on('click', function() {
+		setLStorage('wl','[]');
+		reopenTmRosterWL();
+		$$(".TradeRejected").removeClass('Active');		
+	});
+
+	$$(".tmRosterWL").on('click', function() {	
+//	$$("#sellPlayerWReplace").on('click', function() {
 		displayConsole('with Replace click');
 		var buyIDList = [];
 		var buyposList = [];
@@ -531,6 +559,8 @@ myApp.onPageInit('pagePlayer', function(page) {
 		var aCostR = $$("#UTCostRemain").attr('name').slice(5);
 		var sellpCost = Number(aCostR);
 		console.log(sellpCost);
+		
+		$$(".TradeRejected").removeClass('Active');
 		
 		$$(".toSell").each(function(idx,elm) {
 			sellposList.push($$(elm).parent().attr('name').toLowerCase().slice(0,2));
@@ -552,10 +582,14 @@ myApp.onPageInit('pagePlayer', function(page) {
 //		console.log(xRos);
 		
 		if (aToken < (sellposList.length-TknRtn)) {
-			alert('Not enough Trade Token');
+//			alert('Not enough Trade Token');
+			$$(".TradeRejected").addClass("Active");
+			$$(".TradeRejected").html("Not Enough Trade Token. Trade Rejected");			
 		} else {
 			if (sellpCost < buypCost) {
-				 alert('Not enough Cost');	
+//				 alert('Not enough Cost');	
+				$$(".TradeRejected").addClass("Active");
+				$$(".TradeRejected").html("Not Enough Cost. Trade Rejected");				 
 			} else {
 				if (sellIDList.length === buyIDList.length) {
 					if (checkPOSMatch(sellposChk, buyposList)) {
@@ -567,11 +601,17 @@ myApp.onPageInit('pagePlayer', function(page) {
 						doSubmitTradeStatment(sellIDList, sellposList, buyIDList, buyposList, trDate, sellposList.length, sellpCost, buypCost)								
 					} else {
 						console.log('Fail, Pos not fit');
-						alert('Position not fit. Trade rejected')
+//						alert('Position not fit. Trade rejected 1');
+						$$(".TradeRejected").addClass("Active");
+						$$(".TradeRejected").html("Position not Fit. Trade Rejected");
+						return false;
 					}
 				} else {
 					console.log('Fail. Sell and Buy not match');	
-					alert('Position not fit. Trade rejected')
+					$$(".TradeRejected").addClass("Active");
+					$$(".TradeRejected").html("Position not Fit. Trade Rejected");
+//					alert('Position not fit. Trade rejected 2');
+					return false;
 				}
 			}
 		}
@@ -589,6 +629,19 @@ myApp.onPageInit('pagePlayer', function(page) {
 
 });
 
+function openTradeCenter() {
+	setLStorage('WLDsp', 'Y');
+	
+	var JSFile = 'ascFanta_p.cfm';
+	var JSMethod = '?method=doGetWLInfo_2018_s3';
+	var JSParam = '&WLIDs=' + JSON.parse(getLStorage('wl')) + '&inName=' + getLStorage('userId') + '&inTName=' + getLStorage('userTeam') + '&inUTKey=' + getLStorage('teamKey') + '&inGrpKey=' + getLStorage('groupKey') + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');
+	console.log(JSLink + JSFile + JSMethod + JSParam);
+	$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+		setLStorage('lastKey', json.LASTKEY);
+		mainView.router.load({url:'pages/pagePlayer.html', ignoreCache:true, reload:true, context: json});	
+	});
+}
+
 function doPutWL(obj) {
 		displayConsole('PutWLActive Click: ' + obj.id);
 //		var nWL = $$("#" + obj.id).parent().parent().attr('name')
@@ -598,7 +651,7 @@ function doPutWL(obj) {
 		if (doPushArray('wl',nWL)) {
 			displayConsole(nWL + ' added to wish list');	
 		} else {
-			displayConsole(nWL + ' denied. wish list fulled');
+			displayConsole(nWL + ' denied. Player already existed or List Fulled');
 		}
 
 		$$("li.swipeout").each(function() {
@@ -707,6 +760,13 @@ function doCheckLS(LSName) {
 };
 
 function doPushArray(LSName, Val) {
+
+	$$("li.swipeout").each(function() {
+		myApp.swipeoutClose(this, function() {
+			displayConsole('swipeoutClose');
+		});
+	});	
+
 	var a = JSON.parse(getLStorage(LSName));
 	if (a.length <= 10) {
 		if (a.indexOf(Val) < 0) {
@@ -715,15 +775,13 @@ function doPushArray(LSName, Val) {
 //			screenPop('Player added');
 		} else {
 //			screenPop('Player already in List');
+			return false;
 		}
 	} else 	{
 //		screenPop('Wish List fulled');
+		return false;
 	}
-	$$("li.swipeout").each(function() {
-		myApp.swipeoutClose(this, function() {
-			displayConsole('swipeoutClose');
-		});
-	});	
+	return true;
 };
 
 function doSubmitTradeStatment(sID, sPos, bID, bPos, gmDate, TknUsed, sCost, bCost) {
@@ -736,8 +794,14 @@ function doSubmitTradeStatment(sID, sPos, bID, bPos, gmDate, TknUsed, sCost, bCo
 	console.log(JSLink + JSFile + JSMethod + JSParam);	
 	$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
 		setLStorage('lastKey', json.LASTKEY);
-		if (json.GETTS === 'NoErrFound') {
+		console.log(json.TRVAL);
+		console.log(json.DETAIL);
+		if (json.TRVAL === 1) {
 			removeWLLS(json.BUYID);
+			reopenTmRosterWL();
+		}
+		if (json.TRVAL === 0) {
+			alert(json.MSG);
 			reopenTmRosterWL();
 		}
 	});
@@ -745,6 +809,9 @@ function doSubmitTradeStatment(sID, sPos, bID, bPos, gmDate, TknUsed, sCost, bCo
 
 function removeWLLS(buyList) {
 /*
+		buyList.forEach(itm) {
+			
+		}
 		pWL = JSON.parse(getLStorage('wl'));
 		buyList.each(itm) {
 			itm.replace("p_")
@@ -752,7 +819,7 @@ function removeWLLS(buyList) {
 		tID = this.id.replace("rm_","p_")
 		pWL.splice(pWL.indexOf(tID,1))
 		setLStorage('wl',JSON.stringify(pWL));
-*/		
+*/	
 }
 
 function doLeagueRank(utRank) {
@@ -813,6 +880,9 @@ myApp.onPageInit('pageULeague', function(page) {
 		}, 1000);		
 	});
 	
+	$$(".UTTHist").on('click', function() {
+		doStatHdr('UTTeam', this.id);
+	});	
 });
 
 function doGoUserReg() {
@@ -839,6 +909,7 @@ myApp.onPageInit('pageSignIN', function(page) {
 				setLStorage('lastKey',json.LASTKEY);
 				setLStorage('userId',json.USERID);
 				setLStorage('userTeam',json.USERTEAM);
+				setLStorage('userGroup',json.USERGROUP);
 
 				var newAppINI = {'AppName':'FantAz','AppVer':json.APPVER,'seasonYear':json.SEASONYEAR,'seasonStage':json.SEASONSTAGE,'gmToday':json.GMTODAY};
 				delLStorage('AppINI');
@@ -876,6 +947,58 @@ function showLoginFail(tStr) {
 	}, tStr*1000
 	);
 }
+
+function doStatHdr(iType, iValue) {
+
+	$$(".link").removeClass("active");
+	$$("#toolbarStat").addClass("active");
+		
+	switch (iType) {
+	case 'ACPRank':
+		displayConsole('doStatHdr goPage:pageStatRec','BeforeLoad- iValue:'+iValue);
+		var dINI = JSON.parse(getLStorage('AppINI'));
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doACPRanking_NBA';
+		var JSParam = '&fxParam={"ordBy":"TACP","ordMethod":"desc","seasonYr":' + dINI.seasonYear + ',"Stage":' + dINI.seasonStage + '}&logParam={"inName":"' + getLStorage('userId') + '","inTName":"' + getLStorage('userTeam') + '","inApp":"' + dINI.AppName + '","inAct":"ACPRanking"}' + getLStorage('inParam');
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			mainView.router.load({url:'pages/pageStatRec.html', ignoreCache:true, reload:true, context: json });			
+		});
+		break;
+	case 'Player':
+		displayConsole('doStatHdr goPage:pageStatRec','iValue:'+iValue);
+		var dINI = JSON.parse(getLStorage('AppINI'));
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doStat_Player_2018_s3';
+		var JSParam = '&PlayerID=' + iValue + '&logParam={"inName":"' + getLStorage('userId') + '","inTName":"' + getLStorage('userTeam') + '","inApp":"' + dINI.AppName + '","inAct":"ACPRanking"}' + getLStorage('inParam');
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			mainView.router.load({url:'pages/pageStatRec.html', ignoreCache:true, reload:true, context: json });			
+		});
+		break;
+	case 'UTTeam':
+		displayConsole('doStatHdr goPage:pageStatRec','iValue:'+iValue);
+		var dINI = JSON.parse(getLStorage('AppINI'));
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doStat_UTTeam_2018_s3';
+		var JSParam = '&TeamID=' + iValue.slice(0,36) + '&GroupID=' + iValue.slice(-36) + '&logParam={"inName":"' + getLStorage('userId') + '","inTName":"' + getLStorage('userTeam') + '","inApp":"' + dINI.AppName + '","inAct":"ACPRanking"}' + getLStorage('inParam');
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			mainView.router.load({url:'pages/pageStatRec.html', ignoreCache:true, reload:true, context: json });			
+		});
+		break;		
+	}
+}
+
+myApp.onPageInit('pageStatRec', function(page) {
+	displayConsole('pageStatRec', 'Loaded');
+	$$(".PutWLActive").on('click', function(){
+		doPutWL(this);
+	})
+	$$(".plyHist").on('click', function() {
+		doStatHdr('Player', this.id);
+	});
+});
 
 myApp.onPageInit('pageSettA', function(page) {
 	indexPageBtnReset();
@@ -1035,6 +1158,7 @@ function goPagewData_initRoster() {
 function indexPageBtnReset() {
 	$$(".hiddenBtn").removeClass("Active");
 	$$(".tmRosterWL").removeClass("Active");	
+	$$(".tmRosterWLCan").removeClass("Active");
 	setLStorage('WLDsp', 'N')	
 }
 
@@ -1050,15 +1174,17 @@ $$(".link").on('click', function(event) {
 			doGoHome();
 			break;
 		case 'toolbarLeague':
-//			doGoLeague();
-//			doPlayerList('B')
-			doLeagueRank('prvL');
+			doLeagueRank('prvLlgd');
 			break;
 		case 'toolbarRank':
-			doACPRank('TACP','desc');
+			doACPRank('DACP','desc');
 			break;
 		case 'toolbarPlayer':
-			doPlayerLst('B',0);
+			openTradeCenter();
+//			doPlayerLst('B',0);
+			break;
+		case 'toolbarStat':
+			doStatHdr('ACPRank');
 			break;
 	}
 });
@@ -1313,6 +1439,7 @@ function doAppStartUp() {
 				setLStorage('groupKey', json.GROUPKEY);
 				setLStorage('teamKey', json.TEAMKEY);
 				setLStorage('userId', json.USERID);			
+				setLStorage('userGroup',json.USERGROUP);				
 //				alert(AppINI.AppVer + ":" + json.APPVER);
 //				alert(json);
 				var newAppINI = {'AppName':'FantAz', 'AppVer':json.APPVER,'seasonYear':json.SEASONYEAR,'seasonStage':json.SEASONSTAGE,'gmToday':json.GMTODAY};

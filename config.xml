@@ -49,10 +49,8 @@ Fantasy Basketball - ACP
 <preference name="SuppressesLongPressGesture" value="true" />
 <preference value="none" name="permissions"/>
 
-<!---
 <plugin name="pushwoosh-pgb-plugin" source="npm" />
 <plugin name="" source="git" spec="https://github.com/neptsoft/cordova-plugin-file-opener2"/>
---->
 <plugin name="cordova-plugin-android-fingerprint-auth" source="npm"/>
 <plugin name="cordova-plugin-camera" source="npm"/>
 <plugin name="cordova-plugin-cookiemaster" source="npm"/>

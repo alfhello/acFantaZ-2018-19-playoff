@@ -13,7 +13,7 @@
     <author email="asc.develop@gmail.com" href="http://ascdevelop.com">
         Alf Chung - ASC Develop
     </author>
-	<content src="index.html" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -24,5 +24,5 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="android-minSdkVersion" value="26" />
-    <preference name="android-targetSdkVersion" value="26" />	
+    <preference name="android-targetSdkVersion" value="26" />
 </widget>

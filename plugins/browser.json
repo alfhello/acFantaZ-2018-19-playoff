@@ -21,6 +21,51 @@
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ascdevelop.ascdicta"
+        },
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.ascdevelop.ascfanta"
         }
     },
     "dependent_plugins": {}

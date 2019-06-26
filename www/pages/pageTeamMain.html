@@ -1,0 +1,122 @@
+<div data-page="pageTeamMain" class="page" title="TeamMain">
+	<div class="page-content" style="margin-top:10px; padding-top:1px;">
+	   
+        <div class="ascLOGO signUP">
+            <h1 style="display:inline-block">fantAz</h1>
+            <div class="SignUPFade">
+            </div>
+        </div>		
+
+
+        <div class="list-block SignUPFade signUPdiv pageSignUP1 Active">
+          <ul style="background-color:transparent;">
+            <li>
+              <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+                <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">person</i></div>
+                <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+                  <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">Team Name</div>
+                  <div class="item-input">
+                    <input id="teamMain_TeamName" type="text" placeholder="Your Team Name" style="font-size:16px;padding-top: 5px;color:blue;">
+                    <div id="signUP_nameErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Team name at least 3 characters</div>
+                    <div id="signUp_teamNameMsg" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr"></div>          
+                  </div>
+                </div>
+              </div>
+            </li> 
+            </ul>
+        </div>
+
+        <div class="list-block SignUPFade signUPdiv pageSignUP2">
+          <ul style="background-color:transparent;">
+            <li>
+              <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+                <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">person</i></div>
+                <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+                  <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">Team Name</div>
+                  <div class="item-input">
+                    <div id="signUp_teamNameV" style="margin-top:5px;color:black;font-size:medium;font-weight:bold;"></div>
+                  </div>
+                </div>
+              </div>
+            </li>            
+            <li>
+              <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+                <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">person</i></div>
+                <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+                  <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">Group Name</div>
+                  <div class="item-input">
+                    <input id="teamMain_GroupName" type="text" placeholder="Group Name" style="font-size:16px;padding-top: 5px;color:blue;">
+                    <div id="signUP_groupNameErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Team name at least 3 characters</div>
+                    <div id="signUp_groupNameMsg" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr"></div>          
+                  </div>
+                </div>
+              </div>
+            </li> 
+            </ul>
+        </div>
+
+<div style="margin-left:auto;margin-right:auto;width:200px;text-align:center;" class="pageSignUP3">Group Type</div>
+<div style="width:80%;margin-left:auto;margin-right:auto;margin-bottom:30px;" class="pageSignUP3">
+<div class="list-block" style="display:inline-block;width:45%;margin:0px;">
+    <ul style="background-color:transparent;">   
+        <li>
+            <label class="label-radio item-content">
+            <input type="radio" name="GroupType" value="0" checked="checked">
+            <div class="item-inner">
+              <div class="item-title">Open to Public</div>
+            </div>
+            </label>
+        </li>
+    </ul>
+</div> 
+
+<div class="list-block" style="display:inline-block;width:45%;margin:0px;float:right;">
+	<ul style="background-color:transparent;">
+        <li>
+            <label class="label-radio item-content">
+            <input type="radio" name="GroupType" value="1">
+            <div class="item-inner">
+              <div class="item-title">Private Group</div>
+            </div>
+            </label>
+		</li>   
+	</ul>
+</div>         
+</div>
+
+<div style="margin-left:auto;margin-right:auto;width:200px;text-align:center;" class="pageGroupAuth">Group PassCode</div>
+<div class="list-block pageGroupAuth" style="margin-top:0px;width:80%;margin-left:auto;margin-right:auto;">
+  <ul style="background-color:transparent;">
+    <!-- Text inputs -->
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">lock</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label formLabel" style="padding-top:4px;" id="fieldPassword">Group Passcode</div>
+          <div class="item-input">
+            <input id="signUP_GroupPassCode" type="text" placeholder="Group Passcode" style="font-size:16px;padding-top:5px;color:blue;">
+			<div id="signUP_passErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Group Passcode at least 3 characters</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div style="margin-left:auto;margin-right:auto;width:200px;text-align:center;" class="pageGroupDone">
+	<button id="btnGoHome" class="ascResult ascRegPrev SignINFade pageGroupDone" style="float:right;margin-top:6px;">Create Team</button>
+</div>
+
+
+        <div style="margin-top:-20px;width:80%;margin-left:auto;margin-right: auto;height:40px;">
+            <button id="btnTeamNamePass" class="ascResult ascRegPrev SignINFade pageSignUP1 Active" style="float:right;margin-top:6px;">Create Team</button>
+            <button id="btnGroupNameCheck" class="ascResult ascRegPrev SignINFade pageSignUP2" style="float:left;margin-top:6px;">Create Group</button>
+            <button id="btnGroupNameCreate" class="ascResult ascRegPrev SignINFade pageSignUP3" style="float:right;margin-top:6px;">Confirm Create Group</button>
+            <button id="btnGroupNameFind" class="ascResult ascRegPrev SignINFade pageSignUP2" style="float:right;margin-top:6px;">Find Group</button>
+<!---
+            <button id="btnGroupNamePass" class="ascResult ascRegPrev SignINFade pageSignUP2" style="float:right;margin-top:6px;">Join Group</button>
+--->
+        </div>
+        
+	</div>
+</div>

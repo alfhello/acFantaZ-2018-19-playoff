@@ -28,7 +28,7 @@
 }
 
 .ascLOGO {
-    background:url(../img/ascAppLogo-wBg1.jpg) no-repeat center top; /* 170px x 200px */
+    background:url(../img/ascAppLogo-wBg1-Cropped.jpg) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -54,6 +54,22 @@
   0%   {left:50%;top:44%;height:50px;width:225px;padding:180px 0px 0px 0px;margin:-115px 0px 0px -112px;}
   100%  {left:50%;top:25%;height:50px;width:225px;padding:180px 0px 0px 0px;margin:-115px 0px 0px -112px;}
 }
+
+.ascLOGO.signUP {
+	position:absolute;             /* position in the center of the screen */
+	top:120px;
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+	animation-name: moveUpperSlow;
+	animation-duration: 0.5s;
+}
+
+@keyframes moveUpperSlow {
+  0%   {left:50%;top:25%;height:50px;width:225px;padding:180px 0px 0px 0px;margin:-115px 0px 0px -112px;}
+  100%  {left:50%;top:120px;height:50px;width:225px;padding:180px 0px 0px 0px;margin:-115px 0px 0px -112px;}
+}
+
 
 .LOGOInput {
     border-radius:4px;
@@ -116,6 +132,20 @@ h1 {
 	background-color:#C66;	
     padding:4px 10px;
 	border-style:outset;	
+}
+
+.ascResult.ascRegNext {
+/*	background-color:#0CF; */
+    padding:4px 10px;
+	border-style:outset;
+	color:#000;
+}
+
+.ascResult.ascRegPrev {
+/*	background-color:#6F6; */
+    padding:4px 10px;
+	border-style:outset;	
+	color:#000;	
 }
 
 .ascResult.ascContactMe {
@@ -210,6 +240,11 @@ h1 {
     text-align:center;
     padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+}
+
+.SignUPFade {
+	animation: signINfade 3.5s;
+	-webkit-animation: signINfade 3.5s;	
 }
 
 .CPOS.AvailTo {
@@ -729,4 +764,201 @@ a.tab-link.TCRm {
 }
 .TradeRejected.Active {
 	display: block;	
+}
+
+.col-25 {
+  padding:5px;
+  text-align:center;
+}
+
+.ac_transp {
+	background-color: transparent;	
+}
+
+.signUPdiv {
+    margin-top: 250px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+	font-size:small;
+}
+
+.ascSignUp_Text {
+	font-size: 12px;	
+}
+.ascSignUp_Inner {
+	min-height: 34px;
+	padding-top: 2px;
+	padding-bottom: 3px;	
+}
+.ascSignUp_Media {
+	padding-top: 2px;
+	padding-bottom: 3px;	
+}
+.ascSignUp_Content {
+	min-height: 24px;	
+}
+.pageSignUP1 {
+	display: none	
+}
+.pageSignUP2 {
+	display: none;
+}
+.pageSignUP3 {
+	display: none;
+}
+.pageGroupAuth {
+	display: none;
+}
+.pageGroupDone {
+	display: none;
+}
+.pageSignUP1.Active {
+	display: block;
+}
+.pageSignUP2.Active {
+	display: block;
+}
+.pageSignUP3.Active {
+	display: block;
+}
+.pageGroupAuth.Active {
+	display: block;
+}
+.pageGroupDone.Active {
+	display: block;
+}
+.pageCreateTeam {
+	display: none;
+}
+.pageCreateTeam.Active {
+	display: block;	
+}
+.formErr {
+	display: none;	
+}
+.formErr.Active {
+	display: block;	
+}
+.formLabel {
+	color:black;	
+}
+.formLabel.Err {
+	color:red;
+}
+.divresult {
+	display: none;	
+}
+.divresult.Active {
+	display: block;	
+}
+.signUPTMdiv {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+	font-size:small;	
+}
+.GroupListHeader {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    text-align: center;	
+}
+.groupBtnDiv {
+	margin-left: auto;
+    margin-right: auto;
+    text-align: center;	
+	width:80%;
+}
+.groupBtn {
+	display:none;
+	width:30%;	
+	border-radius: 8px;
+	font-size:small;
+    height: 24px;
+    text-align: center;	
+}
+.groupBtn.Active {
+	display:inline-block;	
+}
+.groupListDiv {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: 350px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+	border-style:ridge;
+}
+.secCreateTeam {
+	display:none;
+}
+.secCreateTeam.Active {
+	display:block;
+}
+.secTeamReady {
+	display:none;
+}
+.secTeamReady.Active {
+	display:block;
+}
+.secGroupBtn {
+	display:none;
+}
+.secGroupBtn.Active {
+	display:block;
+}
+.secCreateGroup {
+	display:none;
+}
+.secCreateGroup.Active {
+	display:block;
+}
+.secFindGroup {
+	display:none;
+}
+.secFindGroup.Active {
+	display:block;
+}
+.secGroupFxBtn {
+	display:none;
+}
+.secGroupFxBtn.Active {
+	display:block;
+}
+.secNewGroupSet {
+	display:none;
+}
+.secNewGroupSet.Active {
+	display:block;
+}
+.secNewGroupSetPass {
+	display:none;
+}
+.secNewGroupSetPass.Active {
+	display:block;
+}
+.secTeamGroupDone {
+	display:none;
+    margin-top: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+    font-size: medium;
+}
+.secTeamGroupDone.Active {
+	display:block;	
+}
+.secTeamGroupErr {
+	display:none;
+    margin-top: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+    font-size: medium;
+}
+.secTeamGroupErr.Active {
+	display:block;	
 }

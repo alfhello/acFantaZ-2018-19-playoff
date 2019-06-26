@@ -1,0 +1,326 @@
+<div data-page="pageNewReg" class="page" title="NewReg">
+	<div class="page-content" style="margin-top:10px; padding-top:1px;">
+	   
+        <div class="ascLOGO signUP">
+            <h1 style="display:inline-block">fantAz</h1>
+            <div class="SignUPFade">
+            </div>
+        </div>		
+
+
+<div class="list-block SignUPFade signUPdiv pageSignUP1 Active">
+  <ul style="background-color:transparent;">
+    <!-- Text inputs -->
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">person</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">Name</div>
+          <div class="item-input">
+            <input id="signUP_username" type="text" placeholder="Your name" style="font-size:16px;padding-top: 5px;color:blue;">
+			<div id="signUP_nameErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">user name at least 3 characters</div>           
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">email</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label formLabel" style="padding-top:4px;" id="fieldEmail">E-mail</div>
+          <div class="item-input">
+            <input id="signUP_useremail" type="email" placeholder="E-mail" style="font-size:16px;padding-top: 5px;color:blue;">
+			<div id="signUP_emailErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">not a valid email format</div>
+			<div id="signUP_emailXst" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">email already registered</div>            
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">lock</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label formLabel" style="padding-top:4px;" id="fieldPassword">Passcode</div>
+          <div class="item-input">
+            <input id="signUP_password" type="password" placeholder="Passcode" style="font-size:16px;padding-top:5px;color:blue;">
+			<div id="signUP_passErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">password at least 5 characters</div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">lock</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label formLabel" style="padding-top:4px;" id="fieldrePass">Re-enter</div>
+          <div class="item-input">
+            <input id="signUP_repass" type="password" placeholder="Passcode" style="font-size:16px;padding-top:5px;color:blue;">
+			<div id="signUP_repassErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">re-password mis-match</div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">persons</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label" style="padding-top:4px;">Gender</div>
+          <div class="item-input">
+            <select id="signUP_gender">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">calendar</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">        
+        <div class="item-title label formlabel" style="padding-top:4px;" id="fieldDOB">Birth day</div>
+          <div class="item-input">
+            <input id="signUP_DOB" type="date" placeholder="Birth day" style="font-size:16px;padding-top:5px;">
+			<div id="signUP_DOBErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Valid DOB is required</div>            
+          </div>
+          
+      </div>
+    </li>    
+	</ul>
+</div>
+
+
+<div style="margin-left:auto;margin-right:auto;margin-top:270px;width:200px;text-align:center;" class="pageSignUP2">Your favorite sport</div>
+<div style="width:90%;margin-left:auto;margin-right:auto;margin-bottom:30px;" class="pageSignUP2">
+
+<div class="list-block" style="display:inline-block;width:30%;margin:0px;">
+  <ul style="background-color:transparent;">
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Basketball">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Basketball</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Volleyball">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Volleyball</div>
+        </div>
+      </label>
+    </li>    
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Socccer">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Soccer</div>
+        </div>
+      </label>
+    </li>
+  </ul>
+</div> 
+
+<div class="list-block" style="display:inline-block;width:30%;margin:0px;">
+  <ul style="background-color:transparent;">
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Tennis">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Tennis</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Athletics">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Athletics</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Racing">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Racing</div>
+        </div>
+      </label>
+    </li>
+  </ul>
+</div> 
+<div class="list-block" style="display:inline-block;width:30%;margin:0px;">
+  <ul style="background-color:transparent;">
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Golf">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Golf</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Badminton">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Badminton</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userfavorite" value="Others">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Others</div>
+        </div>
+      </label>
+    </li>
+  </ul>
+</div> 
+</div>
+
+<div style="margin-left:auto;margin-right:auto;margin-top:40px;width:200px;text-align:center;" class="pageSignUP2">How to know us</div>
+<div style="width:90%;margin-left:auto;margin-right:auto;margin-bottom:60px;" class="pageSignUP2">
+<div class="list-block" style="display:inline-block;width:30%;margin:0px;">
+  <ul style="background-color:transparent;">
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userknowus" value="AppStore">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">App Store</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userknowus" value="WebAd">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Web Ad</div>
+        </div>
+      </label>
+    </li>
+  </ul>
+</div> 
+
+<div class="list-block" style="display:inline-block;width:30%;margin:0px;">
+  <ul style="background-color:transparent;">
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userknowus" value="Friends">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Friends</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userknowus" value="SportClub">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Sport Club</div>
+        </div>
+      </label>
+    </li>
+  </ul>
+</div> 
+<div class="list-block" style="display:inline-block;width:30%;margin:0px;">
+  <ul style="background-color:transparent;">
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userknowus" value="Magazines">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Magazine</div>
+        </div>
+      </label>
+    </li>
+    <li>
+      <label class="label-checkbox item-content">
+        <input type="checkbox" name="userknowus" value="Others">
+        <div class="item-media">
+          <i class="icon icon-form-checkbox"></i>
+        </div>
+        <div class="item-inner">
+          <div class="item-title" style="font-size:x-small;">Others</div>
+        </div>
+      </label>
+    </li>
+  </ul>
+</div> 
+
+<div id="registerMSG" style="width:100%;text-align:center;margin-top:10px;">
+    <div id="verifySend" class="divresult" style="color:green;">verify sent</div>
+    <div id="registerErr" class="divresult" style="color:red;">Fail</div>
+    <div id="mailUsed" class="divresult" style="color:red;">?? Please retry later</div>
+</div>
+
+</div>
+
+
+<div style="margin-top:-20px;width:80%;margin-left:auto;margin-right: auto;height:40px;">
+    <button id="btnUserRegPage2" class="ascResult ascRegNext SignINFade pageSignUP2" style="float:left;margin-top:-20px;margin-left:-20px;">Previous</button>
+    <button id="btnUserRegPage1" class="ascResult ascRegPrev SignINFade pageSignUP1 Active" style="float:right;margin-top:6px;">Next</button>
+    <button id="btnUserSendSignUP" class="ascResult ascRegLogin SignINFade pageSignUP2" style="float:right;margin-top:-22px;margin-right:20px;">Send Register</button>
+    <button id="btnUserTeamCreate" class="ascResult ascRegLogin SignINFade pageCreateTeam" style="float:right;margin-top:-22px;margin-right:20px;">Create your Team</button>            
+</div>
+
+<!---
+<div>
+<div id="verifySend" class="divresult" style="color:green;">verify sent</div>
+<button id="btnUserTeamCreate" class="ascResult ascRegLogin SignINFade pageCreateTeam" style="float:right;margin-top:-22px;margin-right:20px;">Create your Team</button>
+</div>
+--->
+
+<!---
+<div style="width:160px;margin-left:auto;margin-right:auto;margin-bottom:50px;margin-top: 30px;" class="pageSignUP2">    
+            <button id="btnUserSendSignUP" class="ascResult ascRegLogin SignINFade">Send New Register</button>
+            <button id="btnUserSignUP" class="ascResult ascContactMe SignINFade">Contact Me</button>
+</div>            
+--->
+
+<!---
+		<div class="StageFooter" style="bottom:20px;">.</div>    
+--->
+	</div>
+</div>

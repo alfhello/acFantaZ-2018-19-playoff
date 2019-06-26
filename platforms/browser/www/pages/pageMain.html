@@ -1,0 +1,181 @@
+<div data-page="pageTeamMain" class="page" title="TeamMain">
+	<div class="page-content" style="margin-top:10px; padding-top:1px;">
+	   
+<div class="ascLOGO signUP">
+	<h1 style="display:inline-block">fantAz</h1>
+	<div class="SignUPFade">
+	</div>
+</div>		
+
+<div class="secPage secCreateTeam Active">
+<div class="list-block SignUPFade signUPTMdiv" style="margin-top:250px;margin-bottom:15px;">
+    <ul style="background-color:transparent;">
+        <li>
+          <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+            <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">person</i></div>
+            <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+              <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">Team Name</div>
+              <div class="item-input">
+                <input id="teamMain_TeamName" type="text" placeholder="Your team name" style="font-size:16px;padding-top: 5px;color:blue;">
+                <div id="teamMain_nameErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Team name at least 3 characters</div>
+                <div id="teamMain_teamNameMsg" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr"></div>                 
+              </div>
+            </div>
+          </div>        
+        </li> 
+    </ul>
+</div>
+
+<div class="groupBtnDiv SignUPFade Active">
+	<button class="groupBtn" style="float:left;">Cancel</button>    
+	<button id="btnTeamNamePass" class="groupBtn Active" style="float:right;">Create Team</button>    
+</div>
+</div>
+
+<div class="secPage secTeamReady">
+<div class="list-block SignUPFade signUPTMdiv" style="margin-top:250px;margin-bottom:15px;">
+<ul style="background-color:transparent;">
+    <li>
+    <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">person</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+            <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">Team Name</div>
+            <div class="item-input">
+                <div id="teamMain_vTeamName" style="margin-top:5px;color:black;font-size:medium;font-weight:bold;"></div>
+            </div>
+        </div>
+    </div>        
+    </li> 
+</ul>
+</div>
+</div>
+
+<div class="secPage secGroupBtn">
+<div class="groupBtnDiv SignUPFade" style="clear:both;">
+	<button id="teamMain_newGroup" class="groupBtn Active" style="float:left;">New Group</button>
+	<button id="teamMain_findGroup" class="groupBtn Active">Find Group</button>    
+	<button id="teamMain_sysGroup" class="groupBtn Active" style="float:right;">System assign</button>    
+</div>
+</div>
+
+<div class="secPage secCreateGroup">
+<div class="list-block SignUPFade signUPTMdiv" style="margin-top:30px;margin-bottom:10px;"> 
+    <ul style="background-color:transparent;">
+        <li>
+          <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">persons</i></div>
+            <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+              <div class="item-title label formLabel" style="padding-top:4px;" id="fieldName">New Group </div>
+              <div class="item-input">
+                <input id="teamMain_newGroupNameChk" type="text" placeholder="New Group Name" style="font-size:16px;padding-top: 5px;color:blue;">
+                <div id="teamMain_GroupNameErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Group Name at least 3 characters</div>  
+				<div id="teamMain_GroupNameMsg" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr"></div>                            
+              </div>
+            </div>
+          </div>        
+        </li>
+    </ul>
+</div>
+</div>
+
+<div class="secPage secNewGroupSet">
+<div style="width:80%;margin-left:auto;margin-right:auto;margin-top:30px;margin-bottom:20px;">
+<div class="list-block" style="display:inline-block;width:45%;margin:0px;">
+    <ul style="background-color:transparent;">   
+        <li>
+            <label class="label-radio item-content">
+            <input type="radio" name="GroupType" value="0" checked="checked">
+            <div class="item-inner">
+              <div class="item-title">Open to Public</div>
+            </div>
+            </label>
+        </li>
+    </ul>
+</div> 
+
+<div class="list-block" style="display:inline-block;width:45%;margin:0px;float:right;">
+	<ul style="background-color:transparent;">
+        <li>
+            <label class="label-radio item-content">
+            <input type="radio" name="GroupType" value="1">
+            <div class="item-inner">
+              <div class="item-title">Private Group</div>
+            </div>
+            </label>
+		</li>   
+	</ul>
+</div>   
+</div>
+
+<div style="margin-left:auto;margin-right:auto;width:200px;text-align:center;" class="secNewGroupSetPass">Group PassCode</div>
+<div class="list-block secNewGroupSetPass" style="margin-top:0px;width:80%;margin-left:auto;margin-right:auto;">
+  <ul style="background-color:transparent;">
+    <!-- Text inputs -->
+    <li>
+      <div class="item-content" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+        <div class="item-media" style="min-height:32px;padding-top:2px;padding-bottom:0px;"><i class="icon f7-icons">lock</i></div>
+        <div class="item-inner" style="min-height:32px;padding-top:2px;padding-bottom:2px;">
+          <div class="item-title label formLabel" style="padding-top:4px;" id="fieldPassword">Passcode</div>
+          <div class="item-input">
+            <input id="teamMain_GroupPassCode" type="text" placeholder="Group Passcode" style="font-size:16px;padding-top:5px;color:blue;">
+			<div id="teamMain_passErr" style="margin-top:-5px;margin-bottom:5px;color:red;" class="formErr">Passcode at least 3 characters</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</div>
+
+<div class="secPage secFindGroup">
+<div class="GroupListHeader SignUPFade">Group List</div> 
+<form class="searchbar searchbar-init ascSearchBar SignUPFade" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found" style="top:0px;width:80%;margin-left:auto;margin-right:auto;">
+    <div class="searchbar-input">
+        <input type="search" placeholder="Search">
+        <a href="#" class="searchbar-clear"></a>
+    </div>
+    <a href="#" class="searchbar-cancel">Cancel</a>
+</form> 
+ 
+<div id="Trade_UTRoster" class="list-block media-list sortable groupListDiv SignUPFade">
+<!---    {{#each DATA}} --->
+    <li class="swipeout UTTmLi">
+        <a class="pByCost" id="P_{{cost}}">
+         <div class="item-inner" style="padding:3px">
+            <div class="item-title-row">
+                <div class="item-title" style="padding-top:5px;font-weight:bolder;">{{costname}}</div>
+                <div class="item-after UTTmAft" style="margin-top:5px;"></div>
+            </div>
+            <div class="item-subtitle" style="margin-top:-5px;font-size:small;"></div>
+        </div>
+        </a>
+    </li>    
+<!---    {{/each}}   --->
+</div>
+</div>
+
+<div class="secPage secGroupFxBtn">
+<div class="groupBtnDiv SignUPFade" style="margin-top:10px;">
+<!---	<button class="groupBtn" style="float:left;">Cancel</button> --->
+	<button id="teamMain_doJoinGroup" class="groupBtn Active" style="float:right;">Join this Group</button>
+	<button id="teamMain_doNewGroupChk" class="groupBtn" style="float:right;">Create Group</button>    
+	<button id="teamMain_doNewGroup" class="groupBtn" style="float:right;">Create Group</button>
+</div>
+</div>
+
+<div class="secPage secTeamGroupDone">
+Team and Group Created
+<br />
+<br />
+Initializing...
+</div>     
+
+<div class="secPage secTeamGroupErr">
+Team and Group Created
+<br />
+<br />
+<div style="color:red;">Error occuried. Please check or try again later</div>
+</div>     
+        
+	</div>
+</div>

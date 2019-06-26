@@ -1,5 +1,7 @@
 // Initialize app
 var myApp = new Framework7({
+	cache: false, 
+	cacheDuration: 0,
 	template7Pages: true,
 	smartSelectOpenIn: 'page',
 	smartSelectSearchbar: true,
@@ -21,6 +23,7 @@ var INIOb;
 
 var P010 = {};
 P010.url = 'newhome.html';
+//P010.url = 'pages/pageMain.html';
 P010.defData = {APP:AppINI.AppName, VALUE:0, CHKPASS:0, APPVER:AppINI.AppVer};
 
 // Add view  
@@ -933,10 +936,341 @@ myApp.onPageInit('pageSignIN', function(page) {
 		});
 	});
 	$$("#btnUserSignUP").on('click', function() {
-		console('sign up clicked');
+		console.log('sign up clicked');
+		delLStorage('groupKey');
+		delLStorage('teamKey');
+		delLStorage('lastKey');
+		delLStorage('userId');
+		delLStorage('userTeam');
+		delLStorage('userGroup');
+		delLStorage('keySet');
+		doOpenNewReg();
 	});				
 	
 });
+
+function doOpenNewReg() {
+	mainView.router.load({url:'pages/pageNewReg.html', ignoreCache:true, reload:true, context: [] });			
+}
+
+myApp.onPageInit('pageNewReg', function(page) {
+	displayConsole('pageNewReg', 'Loaded');	
+
+	$$("#btnUserRegPage1").on("click", function() {
+		$$(".formErr").removeClass("Active");
+		$$(".formLabel").removeClass("Err");
+
+		if ($$("#signUP_username").val().length < 3 ) {
+			$$("#fieldName").addClass("Err");
+			$$("#signUP_nameErr").addClass('Active');
+			console.log('user name at least 3 characters');							
+			return false;
+		}		
+		if ($$("#signUP_useremail").val().indexOf('@',0) < 0 ) {
+			$$("#fieldEmail").addClass("Err");
+			$$("#signUP_emailErr").addClass('Active');
+			console.log('invalid email format');							
+			return false;
+		}
+
+		if ($$("#signUP_useremail").val().indexOf('@',0) > 0 ) {
+			var JSFile = 'ascFanta_p.cfm';
+			var JSMethod = '?method=doSignUP_checkeMail';
+			var JSParam = '&inUserEmail=' + $$("#signUP_useremail").val() + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+//			console.log(JSLink + JSFile + JSMethod + JSParam);
+			$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+				setLStorage('emailXst',json.XST)				
+				if (json.XST > 0) {
+					$$("#fieldEmail").addClass("Err");
+					$$("#signUP_emailXst").addClass('Active');								
+				}
+			})			
+		}
+
+		if ($$("#signUP_password").val() != $$("#signUP_repass").val() || $$("#signUP_password").val().length < 5) {
+			$$("#fieldPassword").addClass("Err");
+			$$("#fieldrePass").addClass("Err");						
+			if ($$("#signUP_password").val().length < 5) {
+				$$("#signUP_passErr").addClass('Active');
+				console.log('password at leaset 5 characters');				
+			}
+			if ($$("#signUP_password").val() != $$("#signUP_repass").val()) {
+				$$("#signUP_repassErr").addClass("Active");
+				console.log('password mis-match');				
+			}
+			$$("#signUP_password").val("");
+			$$("#signUP_repass").val("");			
+			return false;	
+		}
+		
+		if ($$("#signUP_DOB").val().length < 1 ) {
+			$$("#fieldDOB").addClass("Err");
+			$$("#signUP_DOBErr").addClass('Active');
+			console.log('DOB is a must');							
+			return false;
+		}	
+		
+		$$(".pageSignUP1").removeClass('Active');
+		$$(".pageSignUP2").addClass('Active');
+		console.log($$("#signUP_password").val().length);
+	});
+	$$("#btnUserRegPage2").on('click', function() {
+		$$(".pageSignUP2").removeClass('Active');
+		$$(".pageSignUP1").addClass('Active');
+	});
+
+	$$("#btnUserSendSignUP").on('click', function() {
+		console.log('send Sign Up clicked');
+		var signUP_channel = '';
+		var signUP_favorite = '';		
+		
+		if (getLStorage('emailXst') > 0) {
+			$$(".pageSignUP2").removeClass('Active');
+			$$(".pageSignUP1").addClass('Active');			
+			return false;	
+		}
+		
+		$$("input:checked").each(function() {
+			if ($$(this).attr('name') === 'userknowus') {
+				signUP_channel += ',' + $$(this).val();
+			}
+		});
+		$$("input:checked").each(function() {
+			if ($$(this).attr('name') === 'userfavorite') {
+				signUP_favorite += ',' + $$(this).val();
+			}
+		});		
+		console.log($$("#signUP_username").val());
+		console.log($$("#signUP_useremail").val());		
+		console.log($$("#signUP_password").val());
+		console.log($$("#signUP_gender").val());
+		console.log($$("#signUP_DOB").val());		
+		console.log(signUP_channel.slice(1));
+		console.log(signUP_favorite.slice(1));
+		
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doSignUP_submit';
+		var JSParam = '&inUserName=' + $$("#signUP_username").val() + '&inUserPass=' + $$("#signUP_password").val() + '&inUserEmail=' + $$("#signUP_useremail").val() + '&inUserGender=' + $$("#signUP_gender").val() + '&inUserDOB=' + $$("#signUP_DOB").val() + '&inUserChannel=' + signUP_channel.slice(1) + '&inUserFavorite=' + signUP_favorite.slice(1) + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			console.log(json.RESULT);
+			if (json.RESULT === 1) {
+				$$(".divresult").removeClass("Active");
+				$$("#verifySend").addClass("Active");
+				$$(".pageSignUP1").removeClass("Active")
+				$$("#btnUserRegPage2").removeClass("Active")
+				$$("#btnUserSendSignUP").removeClass("Active")
+				$$("#btnUserTeamCreate").addClass("Active")
+				setLStorage('lastKey', json.LASTKEY);
+				setLStorage('userId', json.USERID);
+				console.log('Nice');
+			} 
+			if (json.RESULT === 2) {
+				$$(".divresult").removeClass("Active");				
+				$$("#mailUsed").addClass("Active");
+				console.log('Result is not good');
+			}
+		})					
+	});	
+	
+	$$("#btnUserTeamCreate").on('click', function() {
+		console.log('CreateTeam clicked');
+		openTeamMainPage('new');
+	});
+	
+});
+
+function openTeamMainPage(iType) {
+	mainView.router.load({url:'pages/pageMain.html', ignoreCache:true, reload:true, context: [] });			
+}
+
+myApp.onPageInit('pageTeamMain', function(page) {
+	displayConsole('pageTeamMain', 'Loaded');
+	
+	$$("#btnTeamNamePass").on('click', function() {
+		$$("#teamMain_nameErr").removeClass("Active");		
+		
+		if ($$("#teamMain_TeamName").val().length < 3) {
+			$$("#teamMain_nameErr").addClass("Active");
+			return false;	
+		}
+		
+		displayConsole('pageTeamMain - TeamName Create', 'Loaded');		
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doTeamMain_addTeamName';
+		var JSParam = '&inUserID=' + getLStorage('userId') + '&inUserTeam=' + $$("#teamMain_TeamName").val() + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			console.log(json);		
+			setLStorage('lastKey', json.LASTKEY);
+			setLStorage('userTeam', json.NEWTEAMNAME);
+			if (json.VALUE === 1) {
+				$$(".secCreateTeam").removeClass("Active");
+				$$(".secTeamReady").addClass("Active");
+				$$(".secGroupBtn").addClass("Active");
+				$$("#teamMain_vTeamName").html(json.NEWTEAMNAME);
+			} else {
+				$$("#teamMain_teamNameMsg").addClass("Active");
+				$$("#teamMain_teamNameMsg").html(json.MSG);
+			}
+		})
+	});
+	
+	$$("#teamMain_newGroup").on('click', function() {
+		displayConsole('pageMain - Create New Group', 'Loaded');
+		$$(".secTeamReady").addClass("Active");		
+		$$(".secGroupBtn").removeClass("Active");
+		$$(".secCreateGroup").addClass("Active");
+		showGroupFx(true, 'chk');
+	});
+	
+	function showGroupFx(iDsp, iAct) {
+		if (iDsp) {
+			$$(".secGroupFxBtn").addClass("Active");
+		} else {
+			$$(".secGroupFxBtn").removeClass("Active");
+		}
+		$$(".groupBtn").each(function() {
+			$$(".groupBtn").removeClass("Active");
+		});
+		if (iAct === 'chk') {
+			$$("#teamMain_doNewGroupChk").addClass("Active")
+		}
+		if (iAct === 'join') {
+			$$("#teamMain_doJoinGroup").addClass("Active")
+		}
+		if (iAct === 'new') {
+			$$("#teamMain_doNewGroup").addClass("Active")
+		}		
+	}
+	
+	$$("#teamMain_doNewGroupChk").on('click', function() {
+		displayConsole('pageMain - do New Group Name Check', 'Loaded');
+		$$(".formErr").removeClass("Active");		
+		
+		if ($$("#teamMain_newGroupNameChk").val().length < 3) {
+			$$("#teamMain_GroupNameErr").addClass("Active");
+			return false;
+		} else {
+			newGroupNameCheck();
+			showGroupFx(true, 'new');
+		}
+	});
+	
+	$$("#teamMain_doNewGroup").on('click', function() {
+		displayConsole('pageMain - do New Group Name', 'Loaded');
+		$$(".formErr").removeClass("Active");	
+		
+		if ($$("input[name='GroupType']:checked").val() === '1') {
+			if ($$("#teamMain_GroupPassCode").val().length < 3) {
+				showGroupFx(true, 'new');			
+				$$("#teamMain_passErr").addClass("Active");
+				return false;
+			} else {
+				doNewGroupName()
+			}
+		} else {
+			$$("#teamMain_GroupPassCode").val('xxx');
+			doNewGroupName()
+		}
+		
+	});	
+	
+//	$$("#btnGroupNameCheck").on('click', function() {
+	function newGroupNameCheck() {
+		displayConsole('pageTeamMain - GroupName Create', 'Loaded');
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doTeamMain_checkGroupName';
+		var JSParam = '&inUserID=' + getLStorage('userId') + '&inUserTeam=' + $$("#teamMain_TeamName").val() + '&inGroupName=' + $$("#teamMain_newGroupNameChk").val() + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			console.log(json);
+			if (json.VALUE === 1) {
+				$$(".secNewGroupSet").addClass("Active");
+			} else {
+				$$("#teamMain_GroupNameMsg").addClass("Active");
+				$$("#teamMain_GroupNameMsg").html(json.MSG);
+				return false;			
+			}
+		});
+	}
+
+	$$("input[type=radio][name='GroupType']").change(function() {
+		console.log('my-app.js Ln1193. Radio Change')
+		console.log($$("input[name='GroupType']:checked").val());
+		if ($$("input[name='GroupType']:checked").val() === '1' ) {
+			$$(".secNewGroupSetPass").addClass("Active");	
+		} else {
+			$$(".secNewGroupSetPass").removeClass("Active");
+		}
+	});
+	
+//	$$("#btnGroupNameCreate").on('click', function() {
+	function doNewGroupName() {
+		displayConsole('pageMain - GroupName Create', 'Loaded');
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doTeamMain_addGroupName';
+		var JSParam = '&inUserID=' + getLStorage('userId') + '&inUserTeam=' + getLStorage('userTeam') + '&inGroupName=' + $$("#teamMain_newGroupNameChk").val() + '&inGroupType=' + $$("input[name='GroupType']:checked").val() + '&inGroupCode=' + $$("#teamMain_GroupPassCode").val() + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			console.log(json);
+			if (json.VALUE === 1) {
+				$$(".secPage").removeClass("Active");
+				$$(".secTeamGroupDone").addClass("Active");
+				setTimeout( function(){
+					doTeamInit(json.USERNAME, json.USERTEAM, json.USERGROUP, json.GROUPKEY);
+				}, 2000)
+			} else {
+				$$("#teamMain_GroupNameMsg").addClass("Active");
+				$$("#teamMain_GroupNameMsg").html(json.MSG);					
+				return false;
+			}
+		});
+	}
+
+	function doTeamInit(iUN, iUT, iGN, iGK) {
+		console.log(iUN);
+		console.log(iUT);
+		console.log(iGN);
+		console.log(iGK);
+		
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doTeamMain_addUT';
+		var JSParam = '&inUserID=' + getLStorage('userId') + '&inUserName=' + iUN + '&inUserTeam=' + iUT + '&inGroupName=' + iGN + '&inGroupKey=' + iGK + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {
+			console.log(json);
+			if (json.VALUE === 1) {
+				setLStorage('teamKey', json.UTKEY);
+				setLStorage('groupKey', iGK);
+				setLStorage('lastKey', json.LASTKEY);
+				setLStorage('userGroup', iGN);
+				
+				var newAppINI = {'AppName':'FantAz', 'AppVer':json.APPVER,'seasonYear':json.SEASONYEAR,'seasonStage':json.SEASONSTAGE,'gmToday':json.GMTODAY};
+				delLStorage('AppINI');
+				setLStorage('AppINI',JSON.stringify(newAppINI));				
+				
+				doGoHome();
+			} else {
+				console.log('Error found');
+				$$(".secPage").removeClass("Active");
+				$$(".secTeamGroupErr").addClass("Active");			
+			}
+		});
+	}
+
+	$$("#btnGoHome").on('click', function() {
+		displayConsole('pageTeamMain - TeamMain Final', 'Loaded');
+		var JSFile = 'ascFanta_p.cfm';
+		var JSMethod = '?method=doTeamMain_UTFinalize';
+		var JSParam = '&inUserID=' + getLStorage('userId') + '&inUserTeam=' + getLStorage('userTeam') + '&inTeamKey=' + getLStorage('teamKey') + '&inGroupKey=' + getLStorage('groupKey') + '&inApp=' + getLStorage('AppINI') + getLStorage('inParam');	
+		console.log(JSLink + JSFile + JSMethod + JSParam);
+		$$.getJSON(JSLink + JSFile + JSMethod + JSParam, function (json) {		
+		
+		});
+	});
+
+})
 
 function showLoginFail(tStr) {
 	$$("#btnUserSignIN").addClass("hide");
